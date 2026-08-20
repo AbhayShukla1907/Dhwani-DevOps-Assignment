@@ -32,10 +32,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: |
-          docker build \
-            -t ghcr.io/abhayshukla1907/dhwani-devops-assignment:latest
-            -t ghcr.io/abhayshukla1907/dhwani-devops-assignment:${{ github.sha }}
+        run: docker build -t ghcr.io/abhayshukla1907/dhwani-devops-assignment:latest -t ghcr.io/abhayshukla1907/dhwani-devops-assignment:${{ github.sha }} .
 
       - name: Push Docker image
         run: |
