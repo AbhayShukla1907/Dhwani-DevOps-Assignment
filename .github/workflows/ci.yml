@@ -1,0 +1,40 @@
+name: Docker CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t dhwani-app .
+
+      - name: Start application
+        run: |
+          echo "DB_ROOT_PASSWORD=testroot123" > .env
+          echo "DB_PASSWORD=testpass123" >> .env
+          docker compose up -d
+
+      - name: Wait for services
+        run: sleep 15
+
+      - name: Check containers
+        run: docker compose ps
+
+      - name: Health check
+        run: |
+          curl --fail http://localhost:8080/health
+
+      - name: Stop services
+        if: always()
+        run: docker compose down
