@@ -1,4 +1,4 @@
-# 🚀 Dhwani DevOps Assignment
+#  Dhwani DevOps Assignment
 
 **Technical Assignment — DevOps Engineer**
 
@@ -8,23 +8,23 @@
 
 ---
 
-## 📋 Assignment Overview
+##  Assignment Overview
 
 This repository contains my complete submission for the Dhwani DevOps Engineer technical assignment.
 
 The assignment covers:
 
-- 🐳 **Part A — Containerised Three-Service Stack**
-- 🔎 **Part B — Faulty Deployment Diagnosis**
-- 🏗️ **Part C — Infrastructure Decisions Under Constraints**
-- 🔄 **Part D — CI/CD Pipeline Review**
-- 🤖 **AI Usage Documentation**
+-  **Part A — Containerised Three-Service Stack**
+-  **Part B — Faulty Deployment Diagnosis**
+-  **Part C — Infrastructure Decisions Under Constraints**
+-  **Part D — CI/CD Pipeline Review**
+-  **AI Usage Documentation**
 
 ---
 
-# 🐳 Part A — Containerised Stack
+#  Part A — Containerised Stack
 
-## 📁 Architecture
+##  Architecture
 
 The application consists of three services:
 
@@ -65,9 +65,9 @@ The application consists of three services:
 
 | Service | Technology | Purpose | Memory Limit |
 |---|---|---|---:|
-| 🗄️ `db` | MariaDB 10.6 | Persistent database | 512 MB |
-| 🐍 `app` | Python / Flask / Gunicorn | Web application | 256 MB |
-| 🌐 `proxy` | Nginx Alpine | Reverse proxy | 128 MB |
+|  `db` | MariaDB 10.6 | Persistent database | 512 MB |
+|  `app` | Python / Flask / Gunicorn | Web application | 256 MB |
+|  `proxy` | Nginx Alpine | Reverse proxy | 128 MB |
 
 Total configured container memory:
 
@@ -79,7 +79,7 @@ The remaining memory is available for Docker and the host operating system.
 
 ---
 
-# 📋 Prerequisites
+#  Prerequisites
 
 The following tools are required:
 
@@ -91,7 +91,7 @@ No cloud account, Kubernetes cluster or paid service is required.
 
 ---
 
-# ⚙️ Environment Configuration
+#  Environment Configuration
 
 The application requires two local environment variables.
 
@@ -114,7 +114,7 @@ The credentials are supplied only through the local environment configuration.
 
 ---
 
-# 🚀 Start the Application
+#  Start the Application
 
 Clone the repository:
 
@@ -149,7 +149,7 @@ docker compose ps
 
 ---
 
-# 🌐 Application Access
+#  Application Access
 
 Nginx is exposed on port `8080`.
 
@@ -178,7 +178,7 @@ The `/health` endpoint verifies that the application can successfully connect to
 
 ---
 
-# ❤️ Database Readiness
+#  Database Readiness
 
 The application must not start merely because the MariaDB container has started.
 
@@ -213,7 +213,7 @@ The application also performs database connection retries before initializing th
 
 ---
 
-# 💾 Database Persistence
+#  Database Persistence
 
 MariaDB uses a named Docker volume:
 
@@ -240,7 +240,7 @@ The named volume is retained, so database data remains available after the conta
 
 ---
 
-# 🔐 Application Runs as Non-Root
+#  Application Runs as Non-Root
 
 The application Docker image creates a dedicated system user:
 
@@ -258,7 +258,7 @@ Therefore the application process does not run as `root`.
 
 ---
 
-# 🧠 Resource Limits
+#  Resource Limits
 
 Every service has a deliberate memory limit.
 
@@ -290,7 +290,7 @@ These limits provide basic resource isolation while leaving memory available for
 
 ---
 
-# 📦 Application Image
+#  Application Image
 
 The application uses a lightweight Python base image:
 
@@ -314,7 +314,7 @@ CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "--access-logfile",
 
 ---
 
-# 🌐 Nginx Reverse Proxy
+#  Nginx Reverse Proxy
 
 Nginx acts as the reverse proxy in front of the application.
 
@@ -349,7 +349,7 @@ db
 
 ---
 
-# 🔍 Useful Docker Commands
+#  Useful Docker Commands
 
 ## Start
 
@@ -407,7 +407,7 @@ docker compose build app
 
 ---
 
-# 🐋 Docker Images
+#  Docker Images
 
 The stack was successfully built and tested locally.
 
@@ -425,7 +425,7 @@ PASTE ACTUAL `docker images` OUTPUT HERE
 
 ---
 
-# 🛠️ Most Awkward Requirement
+#  Most Awkward Requirement
 
 The most awkward requirement was ensuring that the application starts only after MariaDB is genuinely ready rather than merely after the MariaDB container has started.
 
@@ -433,7 +433,7 @@ The initial approach relied on Docker Compose service ordering, but service star
 
 ---
 
-# 🔎 Part B — Diagnose a Faulty Deployment
+#  Part B — Diagnose a Faulty Deployment
 
 The complete diagnosis is documented in:
 
@@ -454,7 +454,7 @@ The emphasis in Part B is on proving each diagnosis rather than only suggesting 
 
 ---
 
-# 🏗️ Part C — Infrastructure Decisions
+#  Part C — Infrastructure Decisions
 
 The infrastructure decisions are documented in:
 
@@ -512,7 +512,7 @@ The decisions consider the assignment constraints:
 
 ---
 
-# 🔄 Part D — Pipeline Review
+#  Part D — Pipeline Review
 
 The CI/CD pipeline review is documented in:
 
@@ -520,15 +520,15 @@ The CI/CD pipeline review is documented in:
 
 The review is divided into:
 
-## 🚫 Blocking Issues
+##  Blocking Issues
 
 Issues that should prevent the pull request from being merged.
 
-## ⚠️ Non-Blocking Comments
+##  Non-Blocking Comments
 
 Issues that should be improved but do not necessarily require blocking the merge.
 
-## ✅ What Is Fine
+##  What Is Fine
 
 Configuration and workflow decisions that are reasonable and should be left unchanged.
 
@@ -545,7 +545,7 @@ The review covers areas including:
 
 ---
 
-# 🤖 AI Usage
+#  AI Usage
 
 AI tools were permitted for this assignment.
 
@@ -569,7 +569,7 @@ Detailed AI usage and corrections are documented in:
 
 ---
 
-# 🎥 Screen Recording
+#  Screen Recording
 
 ### Mandatory Walkthrough
 
@@ -593,7 +593,7 @@ The recording is kept below the required **5-minute maximum**.
 
 ---
 
-# 📁 Repository Structure
+#  Repository Structure
 
 ```text
 Dhwani-DevOps-Assignment/
@@ -649,6 +649,6 @@ Before submission, the following items will be verified:
 - Recording URL sent in existing email thread
 
 
-## 🙏 Thank You
+##  Thank You
 
 **Dhwani DevOps Assignment — DEVOPS-ASSIGN-01**
