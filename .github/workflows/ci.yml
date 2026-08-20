@@ -16,6 +16,10 @@ jobs:
   build-test-push:
     runs-on: ubuntu-latest
 
+    env:
+      DB_ROOT_PASSWORD: testroot123
+      DB_PASSWORD: testpass123
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,19 +34,16 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            -t ghcr.io/${{ github.repository_owner }}/dhwani-devops-assignment:latest \
-            -t ghcr.io/${{ github.repository_owner }}/dhwani-devops-assignment:${{ github.sha }} .
+            -t ghcr.io/abhayshukla1907/dhwani-devops-assignment:latest
+            -t ghcr.io/abhayshukla1907/dhwani-devops-assignment:${{ github.sha }}
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/dhwani-devops-assignment:latest
-          docker push ghcr.io/${{ github.repository_owner }}/dhwani-devops-assignment:${{ github.sha }}
+          docker push ghcr.io/abhayshukla1907/dhwani-devops-assignment:latest
+          docker push ghcr.io/abhayshukla1907/dhwani-devops-assignment:${{ github.sha }}
 
       - name: Start application
-        run: |
-          echo "DB_ROOT_PASSWORD=testroot123" > .env
-          echo "DB_PASSWORD=testpass123" >> .env
-          docker compose up -d
+        run: docker compose up -d
 
       - name: Wait for services
         run: sleep 15
@@ -51,8 +52,7 @@ jobs:
         run: docker compose ps
 
       - name: Health check
-        run: |
-          curl --fail http://localhost:8080/health
+        run: curl --fail http://localhost:8080/health
 
       - name: Stop services
         if: always()
